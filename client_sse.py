@@ -35,10 +35,10 @@ async def network_diagnostic(query: str) -> str:
     return json.dumps({"tool": "network_diagnostic", "output": f"Network latency: 200ms for {query}"})
 
 TOOLS = {
-    # "log_analyzer": log_analyzer,
-    # "system_monitor": system_monitor,
-    # "network_diagnostic": network_diagnostic
-    "pyats_mcp": pyats_mcp
+    "log_analyzer": log_analyzer,
+    "system_monitor": system_monitor,
+    "network_diagnostic": network_diagnostic
+    #"pyats_mcp": pyats_mcp
 }
 
 # Input Node
@@ -204,11 +204,11 @@ def build_graph() -> StateGraph:
     
     return graph
 
+graph = build_graph()
+compiled_graph = graph.compile()
+
 # Run the Graph
 async def run_graph(query: str):
-    graph = build_graph()
-    compiled_graph = graph.compile()
-    
     initial_state = WorkflowState(
         query=query,
         subtasks=[],
@@ -219,8 +219,7 @@ async def run_graph(query: str):
         response_history=[],
         needs_loop=False,
         iteration=0
-    )
-    
+    )  
     async for state in compiled_graph.astream(initial_state):
         try:
             print(f"Current state: {state}")

@@ -1,4 +1,6 @@
 langgraph 
 langchain 
+langgraph-cli
+langgraph-cli[inmem]
 langchain-anthropic 
 langchain_google_genai

@@ -1,0 +1,9 @@
+{
+    "graphs": {
+      "LanggraphSSE": "./client_sse.py:compiled_graph"
+    },
+    "dependencies": [
+      "client_sse.py"
+    ],
+    "env_file": "/Users/suressan/env"
+  }
